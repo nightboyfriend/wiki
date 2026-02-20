@@ -25,8 +25,8 @@ openssl enc -aes-256-cbc -d -pbkdf2 -in "wiki_db_backup.enc" -k "wiki" | \
   gunzip | \
   docker exec -i wiki-db psql -U wikijs -d wiki
 ```
-# Если то что описано выше не помогло, в репозитории лежат експортированные volumes из docker desktop воспользуйся ими для восстановления
+## Если то что описано выше не помогло, в репозитории лежат експортированные volumes из docker desktop воспользуйся ими для восстановления
 
-# Одна команда: Дамп -> Сжатие -> Шифрование
+### Команда, которой были сжата и зашифрованна бд: Дамп -> Сжатие -> Шифрование
 docker exec -t wiki-db pg_dump -U wikijs -d wiki | gzip | \
   openssl enc -aes-256-cbc -salt -pbkdf2 -out "wiki_backup_1.sql.gz.enc" -k "wiki"
